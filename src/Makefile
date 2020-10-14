@@ -50,7 +50,9 @@ GCCFLAGS= $(GCCOPTIM) $(TIME_FUNC) -DHZ=$(HZ) $(ENUMS) $(STRUCTASSIGN) $(CFL) -f
 SRC=	dmipsapp.c	dhry1.c dhry2.c
 HDR=		dhry-dmips.h
 
-UNIX_PROGS=	cc_dry2 cc_dry2reg gcc_dry2 gcc_dry2reg
+BMK_SRC= core_main.c core_list_join.c core_matrix.c core_portme.c core_util.c core_state.c
+
+UNIX_PROGS=	cc_dry2 cc_dry2reg gcc_dry2 gcc_dry2reg benchmark
 MSC_PROGS=	sdry2.exe sdry2reg.exe mdry2.exe mdry2reg.exe \
 		ldry2.exe ldry2reg.exe cdry2.exe cdry2reg.exe \
 		hdry2.exe hdry2reg.exe
@@ -76,6 +78,9 @@ cc_dry2reg:	$(SRC) $(HDR)
 
 gcc_dry2:		$(SRC) $(HDR)
 		$(GCC) $(GCCFLAGS) $(SRC) $(LFLAGS) -o $@
+
+benchmark: $(BMK_SRC)
+		$(GCC) $(GCCFLAGS) $(BMK_SRC) $(LFLAGS) -o $@
 
 gcc_dry2reg:	$(SRC) $(HDR)
 		$(GCC) $(GCCFLAGS) -DREG=register $(SRC) $(LFLAGS) -o $@

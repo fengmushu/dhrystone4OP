@@ -39,11 +39,10 @@ define Build/Prepare
 	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
-
-
 define Package/dhrystone/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/gcc_dry2 $(1)/usr/bin/dhrystone
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/benchmark $(1)/usr/bin/benchmark
 endef
 
 $(eval $(call BuildPackage,dhrystone))
